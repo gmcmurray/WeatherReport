@@ -1,12 +1,26 @@
 var currrentDay = $('#currentDay');
+var cityforecast=$('#cityforecast');
 // var timeblocks = $('#timeblocks');
 var now = moment();
 var clor;
 console.log('date', now.format("dddd, MMMM D, YYYY"));
 $("#currentDay").text(now.format("dddd, MMMM D, YYYY"));
 
+for (let index = 0; index < 5; index++) {
+    cityforecast.append(`
 
-https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+<div class="card" style="width: 18rem;">
+<div class="card-body">
+    <h5 class="card-title">${now}</h5>
+ </div>
+  <img src="./assets/Images/sunny.png" class="card-img-top" alt="...">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+  </ul>
+</div>`)}
+// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 // btn-outline-secondary
 // Load timeblocks in military time from 9:00  to 18:00
 // Colorcode background colors to show past, present and future

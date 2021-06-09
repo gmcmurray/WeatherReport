@@ -22,15 +22,32 @@
       rel="stylesheet"
     />
 </head>
+<body>
+  <header class="jumbotron">
+    <h1 class="display-3">Five Day Weather Forecast</h1>
+    <p id="currentDay" class="lead">sdfsda</p>
+  </header>
+  <main id="container" class="flexrow">
+      <section id="cityselect" class="col-2" style="border: 1px black">
+        <p>City Select</p>
+      </section>
+      <section id="cityweather" class="col-10" style="border: 1px black">
+        <div id="cityweather">
+          <p>Featured City Weather Today</p>
+        </div>
+        <div id="cityforecast" class="flexrow">
+          <!-- <div id="day1"> Card1</div>
+          <div id="day2"> Card2</div>
+          <div id="day3"> Card3</div>
+          <div id="day4"> Card4</div>
+          <div id="day5"> Card5</div> -->
+        </div>
+      </section>
+  </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://moment.github.io/luxon/global/luxon.js"></script>
 <script type="text/javascript" src="./assets/js/script.js"></script>  
     
 </body>
-<body>
-    <header class="jumbotron">
-      <h1 class="display-3">Weather Dashboard</h1>
-      <p id="currentDay" class="lead">sdfsda</p>
-    </header>
 </html>
