@@ -5,55 +5,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeatherReport</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <link
-      rel="stylesheet"
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+      <!-- rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
+    /> -->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"  media="screen,projection"/>
+
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
-    <link
+    <!-- <link
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
-    />
+    /> -->
 </head>
 <body>
-  <header class="jumbotron">
-    <h1 class="display-3">Five Day Weather Forecast</h1>
-    <p id="currentDay" class="lead">sdfsda</p>
-  </header>
-  <main id="container" class="flexrow">
-      <section id="cityselect" class="col-2" style="border: 1px black">
-        <p>City Select</p>
-      </section>
-      <section id="cityweather" class="col-10" style="border: 1px black">
-        <div id="cityweathertoday" >
-          
-        </div>
-        <section id="forecastcontainer">
-          <h1>Five Day Forecast</h1>
 
-          <div id="cityforecast" class="flexrow">
-         
-            <!-- <div id="day1"> Card1</div>
-            <div id="day2"> Card2</div>
-            <div id="day3"> Card3</div>
-            <div id="day4"> Card4</div>
-            <div id="day5"> Card5</div> -->
-          </div>
-        </section>
-        
-      </section>
-  </main>
+<nav class="row green">
+    <a href="" class="brand-logo center"> Weather Report</a>
+    <!-- <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!"></a>one</li>
+        <li><a href="#!"></a>two</li>
+        <li class="divider"></li>
+        <li><a href="#!"></a>three</li>
+    </ul> -->
+        <!-- <div class="nav-wrapper">
+            <a href="" class="brand-logo center"> Weather Report</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="dropd" class="left">
+               <li><a href="#" class="dropdown-button" data-activates="dropdown1">Select City<i class="material-icons right">arrow_drop_down</i></a></li>
+           </ul> 
+           <ul class="side-nav" id="mobile-demo">
+            <li><a href="#" class="dropdown-button" data-activates="dropdown1">Select City<i class="material-icons right">arrow_drop_down</i></a></li>
+           </ul>
+        </div>   -->
+    </nav>
+     <div class="row yellow">
+        <div id="cityselect" class="col s3 grey">
+            <p>this is small</p>
+          <!-- Grey navigation panel -->
+        </div>
+  
+        <div class="col s9 teal" id="cityweather">
+            <div id="cityweathertoday" class="row card ">
+                  <div class="card-body flexrow">
+                    <h5 class="card-title"><span id="selectedcity"></span> - <span id="today"></span></h5>
+                    <i class="fas fa-cloud-rain"></i>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Temp: <span id="tempnow"> 50</span> C</li>
+                    <li class="list-group-item">Wind: <span id="windnow"> 3</span> mph</li>
+                    <li class="list-group-item">Humidity: <span id="humiditynow"> 45</span> %</li>
+                  </ul>
+                </div>
+            <h3>Five Day Forecast</h3>
+            <div class="flex" id="forecast">
+                <!--Drop in 5 cards for forecast -->
+            </div>   
+        </div>
+     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://moment.github.io/luxon/global/luxon.js"></script>
-<script type="text/javascript" src="./assets/js/script.js"></script>  
-    
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script type="text/javascript" src="./assets/js/script.js"></script> 
+<!-- <script>$(".button-collapse").sideNav();</script> -->
 </body>
 </html>
