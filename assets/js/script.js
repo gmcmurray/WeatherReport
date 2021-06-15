@@ -8,42 +8,14 @@ var now = moment();
 var clor;
 var city='Olympia';
 
-// $( function() {
-//   var availableTags = [
-//     "ActionScript",
-//     "AppleScript",
-//     "Asp",
-//     "BASIC",
-//     "C",
-//     "C++",
-//     "Clojure",
-//     "COBOL",
-//     "ColdFusion",
-//     "Erlang",
-//     "Fortran",
-//     "Groovy",
-//     "Haskell",
-//     "Java",
-//     "JavaScript",
-//     "Lisp",
-//     "Perl",
-//     "PHP",
-//     "Python",
-//     "Ruby",
-//     "Scala",
-//     "Scheme"
-//   ];
-//   $( "#tags" ).autocomplete({
-//     source: availableTags
-//   });
-// } );
-
+// Gets today's weather from city
 var getweather = function (city) {
   var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6c739212e839903aab1ecb07a7173d6b`;
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
+          // 
           populateweather(data, city);
           return(true);
         });
@@ -57,6 +29,31 @@ var getweather = function (city) {
     });
 };
 
+// Gets UVI reading of city - needs lat, lon to work which is stored in localStorage after getweather/populateweather
+var getUVI = function(){
+  var citylat = localStorage.getItem("lat");
+  var citylon = localStorage.getItem("lon");
+  var apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${citylat}&lon=${citylon}&appid=6c739212e839903aab1ecb07a7173d6b`;
+  fetch(apiUrl)
+  .then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        console.log("UVIdat", data)
+        // 
+        $('#UVInow').text((data.current.uvi).toFixed(1));
+        return(true);
+      });
+    } else {
+      alert('Error: ' + response.statusText);
+      return(false);
+    }
+  })
+  .catch(function (error) {
+    alert('Unable to connect to OpenWeather');
+  });
+};
+
+// Gets 5 day forecast
 var getforecastweather = function (city) {
   var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&exclude&appid=6c739212e839903aab1ecb07a7173d6b`;
   fetch(apiUrl)
@@ -77,6 +74,11 @@ var getforecastweather = function (city) {
     });
 };
 
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.autocomplete');
+  var instances = M.Autocomplete.init(elems, options);
+});
+
 
 $("#currentDay").text(now.format("dddd, MMMM D, YYYY"));
 
@@ -87,6 +89,8 @@ var  populateweather = function(data,city){
   $('#humiditynow').text((data.main.humidity).toFixed(1));
   $('#selectedcity').text(city);
   $('#today').text(now.format("MM/D/YY"))
+  localStorage.setItem("lon",data.coord.lon)
+  localStorage.setItem("lat",data.coord.lat)
   return;
 }
 
@@ -109,13 +113,13 @@ var populateforecast = function(data,city){
       var date=moment().add(index,"days")
         cityforecast.append(`
     <div class="card col">
-    <div class="card-content">
-    <span id="cadtit" class="card-title activator small blue-text">${date.format(" ddd - MM/D/YY")}<i class="material-icons right">more_vert</i></span>
+    <div class="row">
+    <span id="cadtit" style="font-size:15px" class="card-title activator small blue-text">${date.format(" ddd : MM/D/YY")}<i class="material-icons right">more_vert</i></span>
       <img src="./assets/Images/sunny.png" class="cardfore" alt="..." width="10%" height="auto">
-     <ul class="right">
-        <li class="list-group-item">Temp: <span> ${avgtemp}<\span> C</li>
-        <li class="list-group-item">Wind: <span> ${avgwind}<\span> mph </li>
-        <li class="list-group-item">Humidity: <span>${avghumidity}<\span> %</li>
+     <ul >
+        <li style="padding:5px;margin:2px;font-size:12px">Temp: <span> ${avgtemp}<\span> C</li>
+        <li style="padding:5px;margin:2px;font-size:12px">Wind: <span> ${avgwind}<\span> mph </li>
+        <li style="padding:5px;margin:2px;font-size:12px">Humidity: <span>${avghumidity}<\span> %</li>
       </ul>
     </div>
     <div class="card-reveal">
@@ -126,22 +130,10 @@ var populateforecast = function(data,city){
       `)
 
     }     
-    }
-          
-    // <div class="card">
-    //    <h6 class="card-title">${date.format(" ddd - MM/D/YY")}</h6>
-    //   <img src="./assets/Images/sunny.png" class="cardfore" alt="..." width="10%" height="auto">
-    //   <ul class="right">
-    //     <li class="list-group-item">Temp: <span id="temp${index.toString}"> 2<\span> </li>
-    //     <li class="list-group-item">Wind: <span id="wind${index.toString}"> 2<\span> </li>
-    //     <li class="list-group-item">Humidity: <span id="humid${index.toString}"> 2<\span> </li>
-    //   </ul>
-    // </div>
+}
 
-// $(`#temp${index.toString}`).text("3");
-// $(`#wind${index.toString}`).text("3");
-// $(`#humid${index.toString}`).text("3");
-    
-getweather(city);
+
+getweather(city);   
+getUVI(city)
 getforecastweather(city);
 

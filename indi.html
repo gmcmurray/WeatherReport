@@ -23,10 +23,10 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
-    <link
+    <!-- <link
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
-    />
+    /> -->
 </head>
 <body>
 
@@ -51,27 +51,37 @@
     </nav>
      <div class="row yellow">
         <div id="cityselect" class="col s2 grey">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">textsms</i>
-                    <input type="text" id="utocomplete-input" class="autocomplete">
-                    <label for="autocomplete-input">Autocomplete</label>
-                  </div>
-                </div>
-                  
+            <p>this is small</p>
           <!-- Grey navigation panel -->
         </div>
   
-        <div class="col s10 teal" id="cityweather">
-            <div id="cityweathertoday" class="col ">
-                  <h5 class="card-title"><span id="selectedcity"></span> - <span id="today"></span>   <i class="fas fa-cloud-rain"></i></h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Temp: <span id="tempnow"> 50</span> C</li>
-                    <li class="list-group-item">Wind: <span id="windnow"> 3</span> mph</li>
-                    <li class="list-group-item">Humidity: <span id="humiditynow"> 45</span> %</li>
-                    <li class="list-group-item">UV Index: <span id="UVInow"> 45</span></li>
-                  </ul>
-                </div>
+        <div class="col s10 blue" id="cityweather">
+            <div id="cityweathertoday" class="left s4">
+     
+                    <h3 class="card-title"><span id="selectedcity"></span>  Weather Today - <span id="today"></span></h3>
+                    <i class="fas fa-cloud-rain"></i>
+
+                <table class="stripped responsive-table">
+                    <tbody>
+                      <tr>
+                        <td>Temp: </td>
+                        <td><span id="tempnow"> 50</span> C</td>
+                      </tr>
+                      <tr>
+                        <td>Humidity:</td>
+                        <td><span id="humiditynow"> 45</span> %</td>
+                      </tr>
+                      <tr>
+                        <td>Wind: </td>
+                        <td><span id="windnow"> 3</span> mph</td>
+                      </tr>
+                      <tr>
+                        <td>UV Index: </td>
+                        <td><span id="UVInow"> 45</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
             <h3>Five Day Forecast</h3>
             <div class="flex" id="forecast">
                 <!--Drop in 5 cards for forecast -->

@@ -9,6 +9,11 @@ body {
   height: auto;
 }
 
+.collection-item{
+  font-size: 12px;
+  padding:5px;
+  margin:2px;
+}
 .card-title{
   font-size: 16px;
 }
