@@ -8,6 +8,7 @@ var now = moment();
 var clor;
 var city
 //  ='Olympia';
+var colors=["green","yellow","red","white","brown"];
 
 
 // Gets today's weather from city
@@ -29,6 +30,36 @@ var getweather = function (city) {
       alert('Unable to connect to OpenWeather');
     });
 };
+var setuvindexicon = function(data){
+  console.log("seticonuvicalled")
+if(data.current.uvi <= 2){
+  $('#uvibtn').addClass("green");
+  return("low");
+}
+else if(data.current.uvi <=7){
+$('#uvibtn').addClass("yellow");
+return("moderate");
+}
+else {
+  $('#uvibtn').addClass("red");
+  return("high")
+}
+}
+
+$('#uvibtn').click(function(e){
+if(uviseverity==="low"){
+  alert("No Protection Required. You can safely stay outside")
+}
+if(uviseverity==="moderate"){
+  alert("Protection Required. Seek shade during midday hours. Wear shirt, sunscreen and use hat.")
+}
+if(uviseverity==="high"){
+  alert("Extra Protection Required.  Avoid being outside during midday hours. Shirt, sunscreen and hat are a must!")
+}
+});
+
+
+var uviseverity = "";
 
 // Gets UVI reading of city - needs lat, lon to work which is stored in localStorage after getweather/populateweather
 var getUVI = function(){
@@ -42,6 +73,7 @@ var getUVI = function(){
         console.log("UVIdat", data)
         // 
         $('#UVInow').text((data.current.uvi).toFixed(1));
+        uviseverity=setuvindexicon(data);
         return(true);
       });
     } else {
@@ -101,17 +133,17 @@ var chooseicon = function(data){
   else if(data.weather[0].description==="thunderstorm"){
     return("ThunderStrom.png")
   }
-  else if(data.weather[0].description==="scattered clouds" || data.weather[0].description==="broken clouds"){
+  else if(data.weather[0].description==="scattered clouds" || data.weather[0].description==="broken clouds"||data.weather[0].description==="overcast clouds"){
     return("cloudy.png")
   }
-  else if(data.lweather[0].description==="few clouds"){
+  else if(data.weather[0].description==="few clouds"){
     return("cloudysunny.png")
   }
   else{return("unknown.png")}
 }
 
 var  populateweather = function(data,city){
-  var iconpath = "./assets/Images/"+chooseicon(data);
+  var iconpath = "./assets/Images/"+ chooseicon(data);
   console.log("iconpath",iconpath)
   console.log("today", data)
   document.getElementById("cityw").src=iconpath;
@@ -124,6 +156,8 @@ var  populateweather = function(data,city){
   localStorage.setItem("lat",data.coord.lat)
   return;
 }
+
+
 
 var chooseiconfore = function(data,index){
   if(data.list[index*8].weather[0].description==="clear sky"){
@@ -144,7 +178,7 @@ var chooseiconfore = function(data,index){
   else if(data.list[index*8].weather[0].description==="thunderstorm"){
     return("ThunderStrom.png")
   }
-  else if(data.list[index*8].weather[0].description==="scattered clouds" || data.list[index*8].weather[0].description==="broken clouds"){
+  else if(data.list[index*8].weather[0].description==="scattered clouds" ||data.list[index*8].weather[0].description==="overcast clouds" || data.list[index*8].weather[0].description==="broken clouds"){
     return("cloudy.png")
   }
   else if(data.list[index*8].weather[0].description==="few clouds"){
@@ -174,14 +208,17 @@ var populateforecast = function(data,city){
       var date=moment().add(index,"days")
       console.log(weathericon)
     cityforecast.append(`
-    <div class="card col">
+    <div class="card col ${colors[index-1]} lighten-3">
     <div class="row">
-    <h5 id="cadtit" style="font-size:15px" class="card-title activator small black-text">${date.format(" ddd : MM/D/YY")}</h5>
+    <h5 id="cadtit" style="font-size:15px;font-weight: 900" class="card-title activator small black-text">${date.format(" ddd : MM/D/YY")}</h5>
      <ul >
-        <li style="font-size:12px">${weatherdescript} ... <img src=${weathericon} style="height:20px;width:20px" class="center"> </li>
-        <li style="padding:5px;margin:2px;font-size:12px">Temp: <span> ${avgtemp}<\span> C</li>
-        <li style="padding:5px;margin:2px;font-size:12px">Wind: <span> ${avgwind}<\span> mph </li>
-        <li style="padding:5px;margin:2px;font-size:12px">Humidity: <span>${avghumidity}<\span> %</li>
+       <div class="container">
+        <img src=${weathericon} style="height:30px;width:30px" class="center">
+        </div>
+        <li style="font-size:12px;font-weight: 900">${weatherdescript}</li>
+        <li style="padding:5px;margin:2px;font-size:12px;font-weight: 900">Temp: <span> ${avgtemp}<\span> C</li>
+        <li style="padding:5px;margin:2px;font-size:12px;font-weight: 900">Wind: <span> ${avgwind}<\span> mph </li>
+        <li style="padding:5px;margin:2px;font-size:12px;font-weight: 900">Humidity: <span>${avghumidity}<\span> %</li>
       </ul>
     </div>
   </div> 
@@ -199,15 +236,16 @@ function goforit(){
   // var city="hello"
   console.log("city1" , city)
   getweather(city);   
-  getUVI(city)
+  getUVI()
   getforecastweather(city);
 }
+
 function goforitreg(){
   var city=$('#cityselected').val();
   // var city="hello"
   console.log("city1" , city)
   getweather(city);   
-  getUVI(city)
+  getUVI()
   getforecastweather(city);
 }
 

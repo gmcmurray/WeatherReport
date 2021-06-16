@@ -30,56 +30,42 @@
 </head>
 <body>
 
-<nav class="row green">
-    <a href="" class="brand-logo center"> Weather Report</a>
-    <!-- <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!"></a>one</li>
-        <li><a href="#!"></a>two</li>
-        <li class="divider"></li>
-        <li><a href="#!"></a>three</li>
-    </ul> -->
-        <!-- <div class="nav-wrapper">
-            <a href="" class="brand-logo center"> Weather Report</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="dropd" class="left">
-               <li><a href="#" class="dropdown-button" data-activates="dropdown1">Select City<i class="material-icons right">arrow_drop_down</i></a></li>
-           </ul> 
-           <ul class="side-nav" id="mobile-demo">
-            <li><a href="#" class="dropdown-button" data-activates="dropdown1">Select City<i class="material-icons right">arrow_drop_down</i></a></li>
-           </ul>
-        </div>   -->
+<nav class="row green lighten-2">
+    <a href="" class="brand-logo center"> City Weather Report</a>
     </nav>
-     <div class="row yellow">
+     <div class="row ">
 
-        <div id="cityselect" class="col s2 grey">
-          <h6>Select City</h6>
+        <div id="cityselect" class="col s2 grey lighten-4">
+          <h5 style="font-weight: 900;">Select City</h5>
           <input type="text" id="cityselected">
                 
                 <button id="cityselectbt">Submit</button>
-          <h6 style="border: black;">Search History</h6>
+          <h6 style="border: black; font-weight: 900; ">Search History</h6>
           <ul>
             <li class="red black-text" id="lastcity">Olympia</li>
+            <br>
             <li  class="red black-text lighten-1" id="secondlast">Second</li>
+            <br>
             <li  class="red black-text lighten-2" id="thirdlast">Third</li>
+            <br>
             <li  class="red black-text lighten-3" id="fourthlast">Fourth</li>
+            <br>
             <li  class="red black-text lighten-5" id="fifthlast">Fifth</li>
           </ul>
-          
-
         </div>
   
-        <div class="col s10 teal" id="cityweather">
+        <div class="col s10 blue lighten-4 black-text" id="cityweather">
             <div id="cityweathertoday" class="col ">
               <div id="cittty" class="flexrow" style="justify-content: space-around;">
                   <!-- <h5 class="card-title"><span id="selectedcity"></span> - <span id="today"></span></h5>
                   <img class="" style="height:25px" src="./assets/Images/snow.png" ></img> -->
                 </div>
                   <ul class="list-group list-group-flush">
-                    <li> <span style="font-size:25px" id="selectedcity"></span> - <span style="font-size:25px" id="today"></span> ..... <img  id="cityw" src="./assets/Images/unknown.png" ></img></li>
-                    <li class="list-group-item">Temp: <span id="tempnow"> 50</span> C</li>
-                    <li class="list-group-item">Wind: <span id="windnow"> 3</span> mph</li>
-                    <li class="list-group-item">Humidity: <span id="humiditynow"> 45</span> %</li>
-                    <li class="list-group-item">UV Index: <span id="UVInow"> 45</span></li>
+                    <li style="font-weight: 900;"> <span style="font-size:25px" id="selectedcity"></span> - <span style="font-size:25px" id="today"></span> ..... <img  id="cityw" src="./assets/Images/unknown.png" ></img></li>
+                    <li style="font-weight: 900;" class="list-group-item">Temp: <span id="tempnow"> 50</span> C</li>
+                    <li style="font-weight: 900;" class="list-group-item">Wind: <span id="windnow"> 3</span> mph</li>
+                    <li style="font-weight: 900;" class="list-group-item">Humidity: <span id="humiditynow"> 45</span> %</li>
+                    <li style="font-weight: 900;" class="list-group-item">UV Index: <span id="UVInow"> 45</span> ... <button id="uvibtn"  style="border-radius:50%">info</button></li>
                   </ul>
                 </div>
             <h3>Five Day Forecast</h3>

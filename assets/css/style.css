@@ -83,11 +83,12 @@ textarea {
   color:black;
 
 }
+
 /* #cityforecast {
  
 } */
 
-.saveBtn {
+/* .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -103,7 +104,7 @@ textarea {
 .btn-info{
   background-color: green !important;
   font-size: 5vw;
-}
+} */
 
 #cityw{
   height:35px;
@@ -118,11 +119,11 @@ textarea {
   border: 1px solid red;
 
 } */
-
+/* 
 @media screen and (max-width:700px) {
   .col-1.time-block {
     /* display: inline-block; */
     font-size: 12px;
     font-weight: bold;
     padding: 0 0 0 0;
-  }}
+  }} */
