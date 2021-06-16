@@ -50,22 +50,32 @@
         </div>   -->
     </nav>
      <div class="row yellow">
+
         <div id="cityselect" class="col s2 grey">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">textsms</i>
-                    <input type="text" id="utocomplete-input" class="autocomplete">
-                    <label for="autocomplete-input">Autocomplete</label>
-                  </div>
-                </div>
-                  
-          <!-- Grey navigation panel -->
+          <h6>Select City</h6>
+          <input type="text" id="cityselected">
+                
+                <button id="cityselectbt">Submit</button>
+          <h6 style="border: black;">Search History</h6>
+          <ul>
+            <li class="red black-text" id="lastcity">Olympia</li>
+            <li  class="red black-text lighten-1" id="secondlast">Second</li>
+            <li  class="red black-text lighten-2" id="thirdlast">Third</li>
+            <li  class="red black-text lighten-3" id="fourthlast">Fourth</li>
+            <li  class="red black-text lighten-5" id="fifthlast">Fifth</li>
+          </ul>
+          
+
         </div>
   
         <div class="col s10 teal" id="cityweather">
             <div id="cityweathertoday" class="col ">
-                  <h5 class="card-title"><span id="selectedcity"></span> - <span id="today"></span>   <i class="fas fa-cloud-rain"></i></h5>
+              <div id="cittty" class="flexrow" style="justify-content: space-around;">
+                  <!-- <h5 class="card-title"><span id="selectedcity"></span> - <span id="today"></span></h5>
+                  <img class="" style="height:25px" src="./assets/Images/snow.png" ></img> -->
+                </div>
                   <ul class="list-group list-group-flush">
+                    <li> <span style="font-size:25px" id="selectedcity"></span> - <span style="font-size:25px" id="today"></span> ..... <img  id="cityw" src="./assets/Images/unknown.png" ></img></li>
                     <li class="list-group-item">Temp: <span id="tempnow"> 50</span> C</li>
                     <li class="list-group-item">Wind: <span id="windnow"> 3</span> mph</li>
                     <li class="list-group-item">Humidity: <span id="humiditynow"> 45</span> %</li>

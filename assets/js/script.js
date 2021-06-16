@@ -6,7 +6,9 @@ var cityweathertoday=$('#cityweathertoday');
 // var timeblocks = $('#timeblocks');
 var now = moment();
 var clor;
-var city='Olympia';
+var city
+//  ='Olympia';
+
 
 // Gets today's weather from city
 var getweather = function (city) {
@@ -15,7 +17,6 @@ var getweather = function (city) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          // 
           populateweather(data, city);
           return(true);
         });
@@ -74,16 +75,46 @@ var getforecastweather = function (city) {
     });
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.autocomplete');
-  var instances = M.Autocomplete.init(elems, options);
-});
-
+// document.addEventListener('DOMContentLoaded', function() {
+//   var elems = document.querySelectorAll('.autocomplete');
+//   var instances = M.Autocomplete.init(elems, options);
+// });
 
 $("#currentDay").text(now.format("dddd, MMMM D, YYYY"));
 
+var chooseicon = function(data){
+  if(data.weather[0].description==="clear sky"){
+    return("sunny.png")
+  }
+  else if(data.weather[0].description==="rain"){
+    return("rain.png")
+  }
+  else if(data.weather[0].description==="shower rain"){
+    return("rainchance.png")
+  }
+  else if(data.weather[0].description==="snow"){
+    return("snow.png")
+  }
+  else if(data.weather[0].description==="mist"){
+    return("FogHazy.png")
+  }
+  else if(data.weather[0].description==="thunderstorm"){
+    return("ThunderStrom.png")
+  }
+  else if(data.weather[0].description==="scattered clouds" || data.weather[0].description==="broken clouds"){
+    return("cloudy.png")
+  }
+  else if(data.lweather[0].description==="few clouds"){
+    return("cloudysunny.png")
+  }
+  else{return("unknown.png")}
+}
+
 var  populateweather = function(data,city){
+  var iconpath = "./assets/Images/"+chooseicon(data);
+  console.log("iconpath",iconpath)
   console.log("today", data)
+  document.getElementById("cityw").src=iconpath;
   $('#tempnow').text((data.main.temp - 273.15).toFixed(1));
   $('#windnow').text((data.wind.speed).toFixed(1));
   $('#humiditynow').text((data.main.humidity).toFixed(1));
@@ -94,12 +125,42 @@ var  populateweather = function(data,city){
   return;
 }
 
+var chooseiconfore = function(data,index){
+  if(data.list[index*8].weather[0].description==="clear sky"){
+    return("sunny.png")
+  }
+  else if(data.list[index*8].weather[0].description==="rain"){
+    return("rain.png")
+  }
+  else if(data.list[index*8].weather[0].description==="shower rain"){
+    return("rainchance.png")
+  }
+  else if(data.list[index*8].weather[0].description==="snow"){
+    return("snow.png")
+  }
+  else if(data.list[index*8].weather[0].description==="mist"){
+    return("FogHazy.png")
+  }
+  else if(data.list[index*8].weather[0].description==="thunderstorm"){
+    return("ThunderStrom.png")
+  }
+  else if(data.list[index*8].weather[0].description==="scattered clouds" || data.list[index*8].weather[0].description==="broken clouds"){
+    return("cloudy.png")
+  }
+  else if(data.list[index*8].weather[0].description==="few clouds"){
+    return("cloudysunny.png")
+  }
+  else{return("unknown.png")}
+}
+
 var populateforecast = function(data,city){
   console.log("forecast",data.list[1].main.humidity)
     for (let index = 1; index < 6; index++) {
       var avgwind=0;
       var avgtemp=0;
       var avghumidity=0;
+      var weatherdescript =data.list[(index-1)*8].weather[0].description
+      var weathericon = "./assets/Images/"+ chooseiconfore(data,index-1);
       for (var y=0; y<8; y++){
         avgwind+=data.list[(index-1)*8+y].wind.speed/8;
         avgtemp+=data.list[(index-1)*8+y].main.temp/8;
@@ -111,20 +172,17 @@ var populateforecast = function(data,city){
       avgtemp-=273.15;
       avgtemp=avgtemp.toFixed(1);
       var date=moment().add(index,"days")
-        cityforecast.append(`
+      console.log(weathericon)
+    cityforecast.append(`
     <div class="card col">
     <div class="row">
-    <span id="cadtit" style="font-size:15px" class="card-title activator small blue-text">${date.format(" ddd : MM/D/YY")}<i class="material-icons right">more_vert</i></span>
-      <img src="./assets/Images/sunny.png" class="cardfore" alt="..." width="10%" height="auto">
+    <h5 id="cadtit" style="font-size:15px" class="card-title activator small black-text">${date.format(" ddd : MM/D/YY")}</h5>
      <ul >
+        <li style="font-size:12px">${weatherdescript} ... <img src=${weathericon} style="height:20px;width:20px" class="center"> </li>
         <li style="padding:5px;margin:2px;font-size:12px">Temp: <span> ${avgtemp}<\span> C</li>
         <li style="padding:5px;margin:2px;font-size:12px">Wind: <span> ${avgwind}<\span> mph </li>
         <li style="padding:5px;margin:2px;font-size:12px">Humidity: <span>${avghumidity}<\span> %</li>
       </ul>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
     </div>
   </div> 
       `)
@@ -133,7 +191,24 @@ var populateforecast = function(data,city){
 }
 
 
-getweather(city);   
-getUVI(city)
-getforecastweather(city);
+document.getElementById("lastcity").addEventListener('click',goforit);
+document.getElementById("cityselectbt").addEventListener('click',goforitreg);
+function goforit(){
+
+  var city=$('#lastcity').text();
+  // var city="hello"
+  console.log("city1" , city)
+  getweather(city);   
+  getUVI(city)
+  getforecastweather(city);
+}
+function goforitreg(){
+  var city=$('#cityselected').val();
+  // var city="hello"
+  console.log("city1" , city)
+  getweather(city);   
+  getUVI(city)
+  getforecastweather(city);
+}
+
 
