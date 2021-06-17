@@ -16,6 +16,7 @@ var getweather = function (city) {
       if (response.ok) {
         response.json().then(function (data) {
           populateweather(data, city);
+          getUVI(city);
           return (true);
         });
       } else {
@@ -257,7 +258,7 @@ $("#cityselectbt").click(
     reloadSearchhistory();
     city = $("#cityselected").val();
     getweather(city);
-    getUVI()
+    // getUVI()
     getforecastweather(city);
     updateSearchhistory(city);
   });
