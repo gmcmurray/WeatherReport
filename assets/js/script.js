@@ -108,9 +108,9 @@ var setuvindexicon = function (data) {
     $('#uvibtn').addClass("yellow");
     return ("moderate");
   }
-  else {
-    $('#uvibtn').addClass("red");
-    return ("high")
+  else if(data.current.uvi >7){
+    $('#uvibtn').addClass("orange");
+    return ("high");
   }
 }
 
@@ -194,10 +194,11 @@ var chooseiconfore = function (data, index) {
   if (data.list[index * 8].weather[0].description === "clear sky") {
     return ("sunny.png")
   }
+
   else if (data.list[index * 8].weather[0].description === "rain") {
     return ("rain.png")
   }
-  else if (data.list[index * 8].weather[0].description === "shower rain") {
+  else if (data.list[index * 8].weather[0].description === "shower rain" ||data.list[index * 8].weather[0].description === "light rain"  ) {
     return ("rainchance.png")
   }
   else if (data.list[index * 8].weather[0].description === "snow") {

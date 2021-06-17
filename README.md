@@ -24,6 +24,7 @@ Three separate fetch() calls were required to achieve API requirements.
 1) weather => todays weather conditions retrieved using city
 2) onecall => UVI index, required lat and lon of city to  retrieve data
 3) forecast => 5 day forecast 
+
 Fetch command along with JSON.parse() was used to retireve targeted data.
 Materialize CSS was used as framework to style page.  Used a list to
 track Search History- 5 items, this was updated for each submital and saved
