@@ -16,7 +16,7 @@ var getweather = function (city) {
       if (response.ok) {
         response.json().then(function (data) {
           populateweather(data, city);
-          getUVI(city);
+          getUVI();
           return (true);
         });
       } else {
@@ -87,6 +87,7 @@ var getUVI = function () {
         response.json().then(function (data) {
           $('#UVInow').text((data.current.uvi).toFixed(1));
           uviseverity = setuvindexicon(data);
+          console.log("uviseverity",uviseverity)
           return (true);
         });
       } else {
@@ -102,15 +103,15 @@ var getUVI = function () {
 // Sets uvi button color and severity level based on index value
 var setuvindexicon = function (data) {
   if (data.current.uvi <= 2) {
-    $('#uvibtn').addClass("green");
+    $('#uvibtn').removeClass("yellow orange").addClass("green");
     return ("low");
   }
   else if (data.current.uvi <= 7) {
-    $('#uvibtn').addClass("yellow");
+    $('#uvibtn').removeClass("green orange").addClass("yellow");
     return ("moderate");
   }
   else if(data.current.uvi >7){
-    $('#uvibtn').addClass("orange");
+    $('#uvibtn').removeClass("green yellow").addClass("orange");
     return ("high");
   }
 }
@@ -237,11 +238,9 @@ var updateSearchhistory = function (city) {
 // Pulls from localStorage Search history
 var reloadSearchhistory = function(){
   stored_history = JSON.parse(localStorage["search_history"]);
-  console.log("4", stored_history)
   for (let index = 0; index < stored_history.length; index++) {
     var x = index.toString() + "city"
     $("#" + x).text(stored_history[index]);
-    console.log("reload searchhistory", $("#" + x).val())
   }
   return (true);
 }
@@ -258,7 +257,6 @@ $("#cityselectbt").click(
     reloadSearchhistory();
     city = $("#cityselected").val();
     getweather(city);
-    // getUVI()
     getforecastweather(city);
     updateSearchhistory(city);
   });
