@@ -31,35 +31,31 @@
 <body>
 
 <nav class="row green lighten-2">
-    <a href="" class="brand-logo center"> City Weather Report</a>
+    <a href="" class="brand-logo center"> City Weather</a>
     </nav>
-     <div class="row ">
-
+     <div class="row ">      
         <div id="cityselect" class="col s2 grey lighten-4">
           <h5 style="font-weight: 900;">Select City</h5>
-          <input type="text" id="cityselected">
-                
-                <button id="cityselectbt">Submit</button>
+          <input type="text" id="cityselected" value="some city"> 
+          <button id="cityselectbt">Submit</button>
           <h6 style="border: black; font-weight: 900; ">Search History</h6>
           <ul>
-            <li class="red black-text" id="lastcity">Olympia</li>
+            <li style="border: black; font-weight: 900;" class="red black-text"><span id="0city">Olympia</span></li>
             <br>
-            <li  class="red black-text lighten-1" id="secondlast">Second</li>
+            <li  style="border: black; font-weight: 900;" class="red black-text lighten-1"><span id="1city">Chicago</span></li>
             <br>
-            <li  class="red black-text lighten-2" id="thirdlast">Third</li>
+            <li  style="border: black; font-weight: 900;"class="red black-text lighten-2"><span id="2city">San Francisco</span></li>
             <br>
-            <li  class="red black-text lighten-3" id="fourthlast">Fourth</li>
+            <li  style="border: black; font-weight: 900;" class="red black-text lighten-3"><span id="3city">Honolulu</span></li>
             <br>
-            <li  class="red black-text lighten-5" id="fifthlast">Fifth</li>
+            <li  style="border: black; font-weight: 900;" class="red black-text lighten-5" ><span id="4city">New York</span></li>
           </ul>
         </div>
-  
         <div class="col s10 blue lighten-4 black-text" id="cityweather">
             <div id="cityweathertoday" class="col ">
+              <br>
               <div id="cittty" class="flexrow" style="justify-content: space-around;">
-                  <!-- <h5 class="card-title"><span id="selectedcity"></span> - <span id="today"></span></h5>
-                  <img class="" style="height:25px" src="./assets/Images/snow.png" ></img> -->
-                </div>
+               </div>
                   <ul class="list-group list-group-flush">
                     <li style="font-weight: 900;"> <span style="font-size:25px" id="selectedcity"></span> - <span style="font-size:25px" id="today"></span> ..... <img  id="cityw" src="./assets/Images/unknown.png" ></img></li>
                     <li style="font-weight: 900;" class="list-group-item">Temp: <span id="tempnow"> 50</span> C</li>
@@ -79,6 +75,5 @@
 <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 <script type="text/javascript" src="./assets/js/script.js"></script> 
-<!-- <script>$(".button-collapse").sideNav();</script> -->
 </body>
 </html>
